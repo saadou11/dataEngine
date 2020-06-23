@@ -56,7 +56,7 @@ object KafkaUtils {
     val producerConfig = new Properties()
 
 
-    producerConfig.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_PLAINTEXT")
+    producerConfig.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "PLAINTEXT")
     producerConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, spark.conf.get(ApplicationProperties.KAFKA_BOOTSTRAP_SERVER))
     producerConfig.put(ProducerConfig.ACKS_CONFIG, "all")
     producerConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer])
@@ -80,7 +80,7 @@ object KafkaUtils {
     val consumerConfig = new Properties()
 
 
-    consumerConfig.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_PLAINTEXT")
+    consumerConfig.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "PLAINTEXT")
 
 
    consumerConfig.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, spark.conf.get(ApplicationProperties.KAFKA_BOOTSTRAP_SERVER))
