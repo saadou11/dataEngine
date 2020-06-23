@@ -1,0 +1,6 @@
+.git
+.idea
+common/target/*
+dataDistribution/target/*
+eventProducer/target/*
+ingestion-engine/target/*
