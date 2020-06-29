@@ -28,14 +28,19 @@ object MainIngestion extends App {
 
   consumer.subscribe(util.Collections.singletonList(topic))
   consumer.commitSync()
-  val event : MetaData = null
-  while(true){
+  var event : MetaData = null
+  var loopCondintion = true
+  while(loopCondintion){
     val records = consumer.poll(100)
     for (record <- records.asScala){
-      val event = buildMetaData(record.value())
+      event = buildMetaData(record.value())
+      println("/////////in consumer loop : " + record.value())
     }
+    println("/////////in while loop : " + event.targetDB)
+    loopCondintion=false
   }
-
+println("//////////////////////////////////////")
+  println("target : " + event.targetDB)
  val sqlContext = sparkSession.sqlContext
 
   sqlContext.sql("CREATE DATABASE IF NOT EXISTS " +event.targetDB)

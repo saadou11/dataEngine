@@ -4,3 +4,8 @@ common/target/*
 dataDistribution/target/*
 eventProducer/target/*
 ingestion-engine/target/*
+common/common.iml
+ingestion-engine/ingestion-engine.iml
+dataEngine.iml
+dataDistribution/dataDistribution.iml
+eventProducer/eventProducer.iml
