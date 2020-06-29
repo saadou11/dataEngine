@@ -27,32 +27,33 @@ object MainIngestion extends App {
   val consumer : KafkaConsumer[String,String] = new KafkaConsumer(pros)
 
   consumer.subscribe(util.Collections.singletonList(topic))
-  consumer.commitSync()
+
   var event : MetaData = null
   var loopCondintion = true
-  while(loopCondintion){
+  while(loopCondintion) {
     val records = consumer.poll(100)
-    for (record <- records.asScala){
+    for (record <- records.asScala) {
       event = buildMetaData(record.value())
       println("/////////in consumer loop : " + record.value())
+
+
+      println("/////////in while loop : " + event.targetDB)
+
+
+      println("//////////////////////////////////////")
+      println("target : " + event.targetDB)
+      val sqlContext = sparkSession.sqlContext
+
+      sqlContext.sql("CREATE DATABASE IF NOT EXISTS " + event.targetDB)
+
+      sparkSession.catalog.setCurrentDatabase(event.targetDB)
+
+      sqlContext.sql("CREATE TABLE IF NOT EXISTS " + event.targetTableName + sparkSession.conf.get(ApplicationProperties.SCHEMA) + " ROW FORMAT DELIMITED FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n'")
+
+      sqlContext.sql("LOAD DATA INPATH " + event.folderSrc + " INTO TABLE " + event.targetTableName)
+      consumer.commitSync()
+      loopCondintion = false
     }
-    println("/////////in while loop : " + event.targetDB)
-    loopCondintion=false
   }
-println("//////////////////////////////////////")
-  println("target : " + event.targetDB)
- val sqlContext = sparkSession.sqlContext
-
-  sqlContext.sql("CREATE DATABASE IF NOT EXISTS " +event.targetDB)
-
-  sparkSession.catalog.setCurrentDatabase(event.targetDB)
-
-  sqlContext.sql("CREATE TABLE IF NOT EXISTS " + event.targetTableName + sparkSession.conf.get(ApplicationProperties.SCHEMA) + " ROW FORMAT DELIMITED FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n'")
-
-  sqlContext.sql("LOAD DATA INPATH " + event.folderSrc +  " INTO TABLE " + event.targetTableName)
-
-
-
-
 
 }
