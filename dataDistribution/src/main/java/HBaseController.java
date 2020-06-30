@@ -1,4 +1,4 @@
-package com.socgen.cgu.controllers;
+
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ import com.socgen.cgu.connections.ConnectionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "component-team API")
+@Api(value = "team")
 @RestController
 @RequestMapping("cgu/api/v1/hbase")
 public class HBaseController {

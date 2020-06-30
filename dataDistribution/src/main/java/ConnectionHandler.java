@@ -1,4 +1,4 @@
-package com.socgen.cgu.connections;
+
 
 import java.io.IOException;
 import java.sql.Connection;

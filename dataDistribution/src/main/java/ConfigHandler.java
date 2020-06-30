@@ -1,4 +1,4 @@
-package com.socgen.daas.applicationContext;
+
 
 public interface ConfigHandler {
 	

@@ -1,4 +1,4 @@
-package com.socgen.daas.exceptions;
+
 
 public class MissingKeysException extends Exception {
 	

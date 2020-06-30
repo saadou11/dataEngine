@@ -1,4 +1,4 @@
-package com.socgen.daas.batch;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
