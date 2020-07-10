@@ -1,4 +1,4 @@
-
+package utils;
 
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.spark.Partitioner;

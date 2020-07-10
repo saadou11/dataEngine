@@ -1,9 +1,9 @@
-
+package propertiesValidator;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Row;
 
-import com.socgen.daas.utils.Utils;
+import utils.Utils;
 
 /**
  * 

@@ -7,7 +7,7 @@ object ApplicationProperties {
    */
 
   val APPLICATION_NAMESPACE = ""
-
+  val SEMICOLON = ";"
 
 
   /**

@@ -1,4 +1,4 @@
-
+package exceptions;
 
 public class MissingKeysException extends Exception {
 	

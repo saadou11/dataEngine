@@ -33,12 +33,12 @@ import org.apache.spark.sql.SparkSession;
 import org.slf4j.Logger;
 
 import com.google.protobuf.ServiceException;
-import com.socgen.daas.applicationContext.ApplicationContext;
-import com.socgen.daas.applicationContext.ConfigHandler;
-import com.socgen.daas.exceptions.MissingKeysException;
-import com.socgen.daas.propertiesValidator.HivePropertiesValidator;
-import com.socgen.daas.propertiesValidator.IPropertiesValidator;
-import com.socgen.daas.utils.Utils;
+import core.ApplicationContextJava;
+import core.ConfigHandler;
+import exceptions.MissingKeysException;
+import propertiesValidator.HivePropertiesValidator;
+import propertiesValidator.IPropertiesValidator;
+import utils.Utils;
 
 import scala.Tuple2;
 import scala.collection.Seq;
@@ -58,7 +58,7 @@ public class HiveToHBaseJob {
 	public static void main(String[] args)
 			throws MasterNotRunningException, ZooKeeperConnectionException, ServiceException, IOException, MissingKeysException, SQLException {
 
-		ApplicationContext app = ApplicationContext.getInstance();
+		ApplicationContextJava app = ApplicationContextJava.getInstance();
 		Logger logger = app.getLogger();
 
 		SparkSession spark = app.getSparkSession(false);

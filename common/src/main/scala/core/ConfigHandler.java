@@ -1,4 +1,4 @@
-
+package core;
 
 public interface ConfigHandler {
 	

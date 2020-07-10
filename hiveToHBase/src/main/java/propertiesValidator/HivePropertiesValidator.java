@@ -1,9 +1,10 @@
-
+package propertiesValidator;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.RowFactory;
 
-import com.socgen.daas.applicationContext.ConfigHandler;
+import core.ConfigHandler;
+
 
 /**
  * 

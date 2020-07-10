@@ -44,13 +44,20 @@ object MainIngestion extends App {
       println("target : " + event.targetDB)
       val sqlContext = sparkSession.sqlContext
 
-      sqlContext.sql("CREATE DATABASE IF NOT EXISTS " + event.targetDB)
+      import sparkSession.implicits._
+      import sparkSession.sql
+      import sqlContext.implicits._
+
+      sqlContext.sql("CREATE DATABASE IF NOT EXISTS " + event.targetDB).show()
 
       sparkSession.catalog.setCurrentDatabase(event.targetDB)
 
-      sqlContext.sql("CREATE TABLE IF NOT EXISTS " + event.targetTableName + sparkSession.conf.get(ApplicationProperties.SCHEMA) + " ROW FORMAT DELIMITED FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n'")
+      /**
+       * TODO drop table in exist
+       */
+      sqlContext.sql("CREATE TABLE IF NOT EXISTS " + event.targetTableName + sparkSession.conf.get(ApplicationProperties.SCHEMA) + " ROW FORMAT DELIMITED FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n'").show
 
-      sqlContext.sql("LOAD DATA INPATH " + event.folderSrc + " INTO TABLE " + event.targetTableName)
+      sqlContext.sql("LOAD DATA INPATH " + "'" +event.folderSrc + "data/" +  "'" +" INTO TABLE " + event.targetTableName).show()
       consumer.commitSync()
       loopCondintion = false
     }
