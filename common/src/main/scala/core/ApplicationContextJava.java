@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.MasterNotRunningException;
 import org.apache.hadoop.hbase.ZooKeeperConnectionException;
@@ -44,7 +45,8 @@ public class ApplicationContextJava {
      * @return
      */
     public SparkSession getSparkSession(Boolean withKyro) {
-
+        Path warehouseLocation = new Path("/apps/hive/warehouse");
+        String warehouseLocationToString = warehouseLocation.toString();
         Builder builder = SparkSession.builder();
         SparkConf sparkConf = new SparkConf();
 
@@ -58,7 +60,7 @@ public class ApplicationContextJava {
 
         builder.config(sparkConf);
 
-        spark = builder.enableHiveSupport().getOrCreate();
+        spark = builder.config("spark.sql.warehouse.dir", warehouseLocationToString).enableHiveSupport().getOrCreate();
         return spark;
     }
 
