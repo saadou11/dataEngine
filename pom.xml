@@ -14,6 +14,7 @@
         <module>common</module>
         <module>ingestion-engine</module>
         <module>hiveToHBase</module>
+        <module>data-distribution</module>
     </modules>
 
     <properties>

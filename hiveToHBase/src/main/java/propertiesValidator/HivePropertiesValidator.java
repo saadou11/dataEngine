@@ -53,6 +53,7 @@ public class HivePropertiesValidator implements IPropertiesValidator {
 		IPropertiesValidator propertiesValidator = new HivePropertiesValidator().withHiveDB(sparkConf.get(ConfigHandler.HIVE_INPUT_DATABASE))
 				.withQuery(sparkConf.get(ConfigHandler.HIVE_INPUT_QUERY)).withKey(sparkConf.get(ConfigHandler.HIVE_INPUT_SEARCH_KEY));
 
+
 		return propertiesValidator;
 	}
 
