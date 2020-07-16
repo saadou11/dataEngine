@@ -10,10 +10,11 @@
     <version>1.0</version>
 
     <modules>
-        <module>dataDistribution</module>
         <module>eventProducer</module>
         <module>common</module>
         <module>ingestion-engine</module>
+        <module>hiveToHBase</module>
+        <module>data-distribution</module>
     </modules>
 
     <properties>

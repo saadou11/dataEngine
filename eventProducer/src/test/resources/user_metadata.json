@@ -1,0 +1,7 @@
+{
+  "targetDB": "userdatadb",
+  "targetTableName": "user_table",
+  "folderSrc": "/tmp/user/",
+  "targetPath": "/warehouse/",
+  "partitionColumn": ""
+}
